@@ -10,25 +10,21 @@ class BankAccount {
 
   deposits() {
     if (this.acctnum === 12345 && this.ownername === "Jim Morris") {
-      console.log(`deposit the amount and add the amount to ${this.balance}`);
+      return `deposit the amount and add the amount to ${this.balance}`;
     } else {
-      console.log(`Account don't Match`);
+      return `Account don't Match`;
     }
   }
-  withdrawals(acctype, balance) {
-    if ((balance = 50000 && acctype == `checking acc`)) {
-      balance = this.balance - 15000;
+  withdrawals(withdraw) {
+    if (this.balance >= withdraw) {
+      this.balance -= withdraw;
+      return `The withdraw your and the new blance is ${this.balance} `;
     } else {
-      acctype = "checkingaccount with overdraft facility";
+      // acctype = "checkingaccount with overdraft facility";
+      return "You don't have enough money";
     }
   }
 }
-const bankAccount = new BankAccount(12345, "Jim Morris", 50000);
-console.log(bankAccount);
-console.log(bankAccount.getAcctnum());
-console.log(bankAccount.deposits());
-console.log(bankAccount.withdrawals("checking acc", 50000));
-
 class CheckingAccount extends BankAccount {
   constructor(overdraftEnabled, acctnum, ownername, balance) {
     super(acctnum, ownername, balance);
@@ -36,8 +32,8 @@ class CheckingAccount extends BankAccount {
   }
 
   withdrawals(overdraftEnabled) {
-    super.withdrawals(acctype, this.balance);
-    if (this.overdraftEnabled === true && acctype == `checking account`) {
+    super.withdrawals();
+    if (this.overdraftEnabled === true) {
       console.log(`Implement the overdraft facility in checking account`);
     } else {
       console.log(`Dont impliment the overdraft facility`);
@@ -45,17 +41,13 @@ class CheckingAccount extends BankAccount {
   }
 }
 
-const checkingAccount = new CheckingAccount(true, 12345, "Leena", 50000);
-console.log(checkingAccount);
-// console.log(checkingAccount.withdrawals(`checking account`, 20000));
-
 class SavingAccount extends BankAccount {
   constructor(acctnum, ownername, balance) {
     super(acctnum, ownername, balance);
   }
 
   withdrawals(overdraftdisabled) {
-    // super.withdrawals(acctype, balance);
+    super.withdrawals();
     if (this.overdraftdisabled === true && acctype == `savings account`) {
       console.log(` Disallow withdrawls completly`);
     } else {
@@ -64,6 +56,16 @@ class SavingAccount extends BankAccount {
   }
 }
 
+const bankAccount = new BankAccount(12345, "Jim Morris", 50000);
+console.log(bankAccount);
+console.log(bankAccount.getAcctnum());
+console.log(bankAccount.deposits());
+
+console.log(bankAccount.withdrawals(100));
+
+const checkingAccount = new CheckingAccount(true, 12345, "Leena", 50000);
+console.log(checkingAccount);
+console.log(checkingAccount.withdrawals(`checking account`, 20000));
 const savingAccount = new SavingAccount(12345, "Leena", 50000);
 console.log(savingAccount);
 console.log(savingAccount.withdrawals(`savings account`, 15000));

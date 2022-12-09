@@ -123,7 +123,7 @@ class Chef extends Dinner {
   //     }
 
   newDinner() {
-    return ` Dinner of the Evening is ${this.appetizer} ${this.entree} ${this.dessert}.`;
+    return ` Dinner of the Evening is ${this.appetizer}, ${this.entree}, ${this.dessert}.`;
   }
 }
 const chef = new Chef();
@@ -134,3 +134,5 @@ const dinner3 = new Chef("Spring Rolls", "Noodles", "Ice cream");
 console.log(dinner1.newDinner());
 console.log(dinner2.newDinner());
 console.log(dinner3.newDinner());
+console.log(dinner1,dinner2,dinner3)
+
